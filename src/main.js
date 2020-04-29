@@ -1,7 +1,6 @@
 // Sheng Yu
 // Dim Sum Run
 // An endless dodging game
-// Barrier prefab adapted from Travis Faas, An Introduction to HTML5 Game Development with Phaser.js (2017)
 // Updated: 4/27/20
 
 // keep me honest
