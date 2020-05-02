@@ -7,11 +7,21 @@ class Load extends Phaser.Scene {
         // set up loading bar (to-do)
 
         // load graphics assets
+        this.load.image('bun', './assets/img/bun.png');
+        this.load.image('runnyspritesheet', './assets/img/runnyspritesheet.png');
         this.load.image('paddle', './assets/img/paddle.png');
         this.load.image('fragment', './assets/img/fragment.png');
-        this.load.image('energycontainer', './assets/img/energycontainer.png');
-        this.load.image('energybar', './assets/img/energybar.png');
+        this.load.image('yolkcontainer', './assets/img/yolkcontainer.png');
+        this.load.image('yolkbar', './assets/img/yolkbar.png');
         this.load.image('talltrees', './assets/img/talltrees.png');
+        this.load.image('ChopstickHand', './assets/img/ChopstickHand.png');
+        this.load.image('ForkHand', './assets/img/ForkHand.png');
+        this.load.image('chopsticks', './assets/img/chopsticks.png');
+        this.load.image('fork', './assets/img/fork.png');
+        // this.load.spritesheet("coin", "coin.png", {
+        //     frameWidth: 20,
+        //     frameHeight: 20
+        // });
         this.load.image('normal', './assets/img/normal.png');
         this.load.image('gooey', './assets/img/gooey.png');
         this.load.image('runny', './assets/img/runny.png');
