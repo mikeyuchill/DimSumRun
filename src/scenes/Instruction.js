@@ -4,8 +4,8 @@ class Instruction extends Phaser.Scene {
    }
 
    create() {
-       this.instruction = this.add.image(centerX, centerY, 'howtoplay').setScale(0.7).setOrigin(0.5,0.5);
-       this.instruction2 = this.add.image(centerX, centerY, 'howtoplay2').setScale(0.7).setOrigin(0.5,0.5);
+       this.instruction = this.add.image(centerX, centerY, 'howtoplay').setScale(0.2).setOrigin(0.5,0.5);
+       this.instruction2 = this.add.image(centerX, centerY, 'howtoplay2').setScale(0.2).setOrigin(0.5,0.5);
        this.instruction2.alpha = 0;
        // add title screen text
        // this.add.text(centerX, centerY, 'Dim Sum Run', { fontFamily: 'Helvetica', fontSize: '48px', color: '#F9BB1F' }).setOrigin(0.5);

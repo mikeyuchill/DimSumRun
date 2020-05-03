@@ -31,7 +31,7 @@ class Play extends Phaser.Scene {
         bun = this.physics.add.sprite(32, centerY, 'bun', 'walk2.png');
         //bun.create( bun.x, bun.y, 'runnyspritesheet');
         bun.alpha = 2;
-        var customBounds = new Phaser.Geom.Rectangle(0, 98, 800, 540);
+        var customBounds = new Phaser.Geom.Rectangle(0, 98, 1000, 600);
         bun.body.setBoundsRectangle(customBounds);
         //bun.width = 10;
         //bun.body.height = 10;
@@ -136,11 +136,11 @@ class Play extends Phaser.Scene {
             this.randomTime = Phaser.Math.Between(9,12);
         }
         
-        this.suddenTimer = this.add.text(80,600, this.randomTime+'S', {color: '#F9BB1F'});
+        this.suddenTimer = this.add.text(80,660, this.randomTime+'S', {color: '#F9BB1F'});
         
 
-        this.chopsticks = this.add.image(40,600, 'chopsticks').setScale(0.1);
-        this.fork = this.add.image(40,600, 'fork').setScale(0.1);
+        this.chopsticks = this.add.image(40,660, 'chopsticks').setScale(0.1);
+        this.fork = this.add.image(40,660, 'fork').setScale(0.1);
         this.chopsticks.alpha = 0;
         this.fork.alpha = 0;
 
