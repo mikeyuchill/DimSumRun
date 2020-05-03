@@ -27,12 +27,18 @@ class Play extends Phaser.Scene {
         this.background = this.add.tileSprite(centerX, centerY, game.config.width, game.config.height, 'table').setScale(1).setOrigin(0.5,0.5);
 
         // set up bun (physics sprite)
-        bun = this.physics.add.sprite(32, centerY, 'bun').setOrigin(0.5).setScale(0.1);
-        //bun = this.physics.add.sprite(32, centerY, 'bun', 'IMG_0344.png').setOrigin(0.5).setScale(0.1);
+        //bun = this.physics.add.sprite(32, centerY, 'bun').setOrigin(1,1).setScale(0.1);
+        bun = this.physics.add.sprite(32, centerY, 'bun', 'walk2.png');
         //bun.create( bun.x, bun.y, 'runnyspritesheet');
         bun.alpha = 2;
         var customBounds = new Phaser.Geom.Rectangle(0, 98, 800, 540);
         bun.body.setBoundsRectangle(customBounds);
+        //bun.width = 10;
+        //bun.body.height = 10;
+        console.log("bun's width:"+bun.body.width);
+        console.log("bun's height:"+bun.body.height);
+        bun.setSize(700, 700, true);
+        bun.setScale(0.09);
         bun.setCollideWorldBounds(true);
         
         bun.setBounce(0.5);
@@ -42,30 +48,31 @@ class Play extends Phaser.Scene {
         bun.setDepth(1);         // ensures that bun z-depth remains above shadow buns
         bun.destroyed = false;   // custom property to track bun life
 
-        this.anims.create({ 
-            key: 'walk', 
-            frames: this.anims.generateFrameNames('bun', {      
-                prefix: 'walk1.png',
-                start: 1,
-                end: 3,
-                suffix: '',
-                //zeroPad: 4 
-            }), 
-            frameRate: 30,
-            repeat: -1 
-        });
+        // this.anims.create({ 
+        //     key: 'walk', 
+        //     frames: this.anims.generateFrameNames('bun', {      
+        //         prefix: 'walk1.png',
+        //         start: 1,
+        //         end: 3,
+        //         suffix: '',
+        //         //zeroPad: 4 
+        //     }), 
+        //     frameRate: 30,
+        //     repeat: -1 
+        // });
 
 
         // leaking effect
         this.anims.create({
             key: 'leak',
-            frames: this.anims.generateFrameNumbers('runnyspritesheet', { start: 0, end: 2, first: 0}),
+            frames: this.anims.generateFrameNumbers('gooeyspritesheet', { start: 0, end: 2, first: 0}),
             frameRate: 1,
             repeat: -1
          });
 
-         this.boom = this.add.sprite(bun.x, bun.y, 'runnyspritesheet').setOrigin(1, 0.5).setScale(0.5);
+         this.boom = this.add.sprite(bun.x, bun.y, 'gooeyspritesheet').setOrigin(1, 0.5).setScale(0.2);
          this.boom.anims.play('leak', true);           // play explode animation
+         this.boom.alpha = 0;
         //  boom.on('animationcomplete', () => {  // callback after animation completes
         //     ship.reset();                      // reset ship position
         //     ship.alpha = 1;                    // make ship visible again
@@ -175,7 +182,7 @@ class Play extends Phaser.Scene {
         }else {
             powerup = 'runny';
         } 
-        powerups = new Powerups(this, this.barrierSpeed, powerup).setScale(0.1).setOrigin(1,1);     // create new barrier
+        powerups = new Powerups(this, -500, powerup).setScale(0.1).setOrigin(1,1);     // create new barrier
         powerups.body.setCircle(190, 260, 230);
         this.powerupsGroup.add(powerups);                         // add it to existing group
     }
@@ -260,7 +267,7 @@ class Play extends Phaser.Scene {
     }
 
     update() {
-        bun.anims.play('walk', true);
+        //bun.anims.play('walk', true);
         this.boom.x = bun.x;
         this.boom.y = bun.y;
         //console.log(paddle.y-(paddle.height/2));
@@ -389,7 +396,8 @@ class Play extends Phaser.Scene {
     }
 
     powerupsCollision(bun, powerups){
-        powerups.eat = true;
+
+        powerups.sfxpower.play();
         powerups.disableBody(true, true);
         this.time.delayedCall(3000, () => {
             this.addPowerups();
@@ -416,13 +424,16 @@ class Play extends Phaser.Scene {
             }, null, this);
         }else if(powerups.functionality==='gooey') {
             console.log("gooey");
+            this.boom.alpha = 1;
         }else if(powerups.functionality==='runny') {
             console.log("runny");
-            bun.setVelocityX(paddleVelocity * 8);
+            this.background.tilePositionX += 10;
+
+            //bun.setVelocityX(paddleVelocity * 8);
         }else {
             for(var i = this.barrierGroup.getChildren().length - 1; i >= 0; --i) { 
-                console.log(i);
-                console.log("number of new barriers:"+this.barrierGroup.getChildren().length);
+                //console.log(i);
+                //console.log("number of new barriers:"+this.barrierGroup.getChildren().length);
                 this.barrierGroup.remove(this.barrierGroup.getChildren()[i], true);
             }
 

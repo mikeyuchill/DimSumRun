@@ -25,7 +25,7 @@ let config = {
             }
         }
     },
-    scene: [ Load, Title, Play, GameOver ],
+    scene: [ Load, Title, Instruction, Play, GameOver ],
     "transparent": true
 }
 

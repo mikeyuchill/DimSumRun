@@ -4,7 +4,7 @@ class GameOver extends Phaser.Scene {
     }
 
     create() {
-        this.add.image(centerX, centerY, 'endgame').setScale(0.8).setOrigin(0.5,0.5);
+        this.add.image(centerX, centerY, 'endgame').setScale(0.18).setOrigin(0.5,0.5);
         // check for high score in local storage
         // uncomment console.log statements if you need to debug local storage
         if(localStorage.getItem('hiscore') != null) {

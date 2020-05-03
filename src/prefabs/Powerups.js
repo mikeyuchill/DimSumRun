@@ -16,6 +16,7 @@ class Powerups extends Phaser.Physics.Arcade.Sprite {
        this.scene = scene;
        this.velocity = velocity;
        this.eat = false;
+       this.sfxpower = scene.sound.add('Effect'); // add powerup sfx
    }
 
    update() {

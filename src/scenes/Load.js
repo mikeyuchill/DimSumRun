@@ -9,7 +9,8 @@ class Load extends Phaser.Scene {
         // load graphics assets
         //this.load.image('bun', './assets/img/bun.png');
         this.load.atlas('bun', './assets/img/bun.png', './assets/img/bun.json');
-        this.load.spritesheet('runnyspritesheet', './assets/img/runnyspritesheet.png', {frameWidth: 612, frameHeight: 186, startFrame: 0, endFrame: 2});
+        //this.load.spritesheet('gooeyspritesheet', './assets/img/gooeyspritesheet.png', {frameWidth: 612, frameHeight: 186, startFrame: 0, endFrame: 2});
+        this.load.spritesheet('gooeyspritesheet', './assets/img/gooeyspritesheet.png', {frameWidth: 1375, frameHeight: 450, startFrame: 0, endFrame: 2});
         this.load.image('paddle', './assets/img/paddle.png');
         this.load.image('fragment', './assets/img/fragment.png');
         this.load.image('yolkcontainer', './assets/img/yolkcontainer.png');
@@ -32,9 +33,12 @@ class Load extends Phaser.Scene {
         this.load.image('gooey', './assets/img/gooey.png');
         this.load.image('runny', './assets/img/runny.png');
         this.load.image('menu', './assets/img/menu.png');
+        this.load.image('howtoplay', './assets/img/howtoplay.png');
+        this.load.image('howtoplay2', './assets/img/howtoplay2.png');
         this.load.image('endgame', './assets/img/endgame.png');
+
         // load audio assets
-        // this.load.audio('beats', ['./assets/audio/beats.mp3']);
+        this.load.audio('Effect', ['./assets/audio/Effect.m4a']);
         // this.load.audio('clang', ['./assets/audio/clang.mp3']);
         // this.load.audio('death', ['./assets/audio/death.mp3']);
     }
