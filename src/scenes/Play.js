@@ -177,11 +177,13 @@ class Play extends Phaser.Scene {
         let spawnChance = Math.random();
         if(spawnChance <= 0.2) {
             powerup = 'gooey';
-        }else if(spawnChance <= 0.95) {
+        }else if(spawnChance <= 0.7) {
             powerup = 'normal';
-        }else {
+        }else if(spawnChance <= 0.9) {
             powerup = 'runny';
-        } 
+        }else {
+            powerup = 'chili';
+        }
         powerups = new Powerups(this, -500, powerup).setScale(0.1).setOrigin(1,1);     // create new barrier
         powerups.body.setCircle(190, 260, 230);
         this.powerupsGroup.add(powerups);                         // add it to existing group

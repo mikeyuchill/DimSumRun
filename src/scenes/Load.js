@@ -29,9 +29,10 @@ class Load extends Phaser.Scene {
         //     frameWidth: 20,
         //     frameHeight: 20
         // });
-        this.load.image('normal', './assets/img/normal.png');
+        this.load.image('normal', './assets/img/normal.PNG');
         this.load.image('gooey', './assets/img/gooey.png');
         this.load.image('runny', './assets/img/runny.png');
+        this.load.image('chili', './assets/img/chili.PNG');
         this.load.image('menu', './assets/img/menu.png');
         this.load.image('howtoplay', './assets/img/howtoplay.png');
         this.load.image('howtoplay2', './assets/img/howtoplay2.png');
