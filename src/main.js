@@ -25,7 +25,8 @@ let config = {
             }
         }
     },
-    scene: [ Load, Title, Play, GameOver ]
+    scene: [ Load, Title, Play, GameOver ],
+    "transparent": true
 }
 
 // uncomment the following line if you need to purge local storage data

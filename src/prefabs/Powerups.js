@@ -24,7 +24,7 @@ class Powerups extends Phaser.Physics.Arcade.Sprite {
 
        console.log(this.eat);
        // add new barrier when existing barrier hits center X
-       if((this.newNormal && this.x < 0) || (this.newNormal && this.eat == true)) {
+       if((this.newNormal && this.x < 0) || (this.eat)) {
            this.newNormal = false;
            // call parent scene method from this context
            this.scene.addPowerups(this.parent, this.velocity);

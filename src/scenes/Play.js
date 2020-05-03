@@ -8,6 +8,7 @@ class Play extends Phaser.Scene {
         this.barrierSpeed = -150;
         this.barrierSpeedMax = -1000;
         level = 0;
+        this.hardMODE = false;
         this.extremeMODE = false;
         this.shadowLock = false;
 
@@ -23,10 +24,11 @@ class Play extends Phaser.Scene {
         // set up cursor keys
         cursors = this.input.keyboard.createCursorKeys();
 
-        this.background = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'talltrees').setOrigin(0);
+        this.background = this.add.tileSprite(centerX, centerY, game.config.width, game.config.height, 'table').setScale(1).setOrigin(0.5,0.5);
 
         // set up bun (physics sprite)
         bun = this.physics.add.sprite(32, centerY, 'bun').setOrigin(0.5).setScale(0.1);
+        //bun = this.physics.add.sprite(32, centerY, 'bun', 'IMG_0344.png').setOrigin(0.5).setScale(0.1);
         //bun.create( bun.x, bun.y, 'runnyspritesheet');
         bun.alpha = 2;
         var customBounds = new Phaser.Geom.Rectangle(0, 98, 800, 540);
@@ -40,16 +42,30 @@ class Play extends Phaser.Scene {
         bun.setDepth(1);         // ensures that bun z-depth remains above shadow buns
         bun.destroyed = false;   // custom property to track bun life
 
+        this.anims.create({ 
+            key: 'walk', 
+            frames: this.anims.generateFrameNames('bun', {      
+                prefix: 'walk1.png',
+                start: 1,
+                end: 3,
+                suffix: '',
+                //zeroPad: 4 
+            }), 
+            frameRate: 30,
+            repeat: -1 
+        });
+
 
         // leaking effect
         this.anims.create({
             key: 'leak',
             frames: this.anims.generateFrameNumbers('runnyspritesheet', { start: 0, end: 2, first: 0}),
-            frameRate: 30
+            frameRate: 1,
+            repeat: -1
          });
 
-         var boom = this.add.sprite(bun.x, bun.y, 'runnyspritesheet').setOrigin(0, 0);
-         boom.anims.play('leak', true);           // play explode animation
+         this.boom = this.add.sprite(bun.x, bun.y, 'runnyspritesheet').setOrigin(1, 0.5).setScale(0.5);
+         this.boom.anims.play('leak', true);           // play explode animation
         //  boom.on('animationcomplete', () => {  // callback after animation completes
         //     ship.reset();                      // reset ship position
         //     ship.alpha = 1;                    // make ship visible again
@@ -72,17 +88,6 @@ class Play extends Phaser.Scene {
  
             runChildUpdate: true    // make sure update runs on group children
         });
-        // this.gooeyGroup = this.add.group({
- 
-        //     runChildUpdate: true    // make sure update runs on group children
-        // });
-        // this.addPowerups();
-
-        // this.runnyGroup = this.add.group({
- 
-        //     runChildUpdate: true    // make sure update runs on group children
-        // });
-        // this.addPowerups();
 
         // set up difficulty timer (triggers callback every second)
         this.difficultyTimer = this.time.addEvent({
@@ -99,7 +104,7 @@ class Play extends Phaser.Scene {
  
         // the actual Yolk Bar.
         //this.yolkBar = this.add.sprite(yolkContainer.x + 23, yolkContainer.y, "yolkbar").setScale(0.5);
-        this.yolkBar = this.add.sprite(210, 40, "yolkbar").setScale(0.5);
+        this.yolkBar = this.add.sprite(220, 40, "yolkbar").setScale(0.5);
         
         // a copy of the Yolk bar to be used as a mask.
         this.yolkMask = this.add.sprite(this.yolkBar.x, this.yolkBar.y, "yolkbar").setScale(0.5);
@@ -116,8 +121,15 @@ class Play extends Phaser.Scene {
 
 
         // sudden event timer.
-        this.randomTime = Phaser.Math.Between(5,12);
-        this.suddenTimer = this.add.text(80,600, this.randomTime+'S');
+        if(this.hardMODE) {
+            this.randomTime = Phaser.Math.Between(4,8);
+        }else if(this.extremeMODE) {
+            this.randomTime = Phaser.Math.Between(1,3);
+        }else{
+            this.randomTime = Phaser.Math.Between(9,12);
+        }
+        
+        this.suddenTimer = this.add.text(80,600, this.randomTime+'S', {color: '#F9BB1F'});
         
 
         this.chopsticks = this.add.image(40,600, 'chopsticks').setScale(0.1);
@@ -126,7 +138,7 @@ class Play extends Phaser.Scene {
         this.fork.alpha = 0;
 
         suddentype = Phaser.Math.RND.pick(['chopsticks', 'fork']);
-console.log("expected sudden:"+suddentype);
+//console.log("expected sudden:"+suddentype);
         if(suddentype == 'chopsticks') {
             this.chopsticks.alpha = 1;
             
@@ -148,7 +160,7 @@ console.log("expected sudden:"+suddentype);
     }
 
     addBarrier() {
-        let barrier = new Barrier(this, this.barrierSpeed, Phaser.Math.RND.pick(['paddle', 'paddle', 'paddle']));     // create new barrier
+        let barrier = new Barrier(this, this.barrierSpeed, Phaser.Math.RND.pick(['plate', 'soysauce', 'teapot', 'porkbunsteamer', 'shrimpdumplingsteamer'])).setScale(0.3).setOrigin(0.5, 0.5);     // create new barrier
         //barrier.body.setCircle(190, 260, 230);
         this.barrierGroup.add(barrier);                         // add it to existing group
     }
@@ -158,7 +170,7 @@ console.log("expected sudden:"+suddentype);
         let spawnChance = Math.random();
         if(spawnChance <= 0.2) {
             powerup = 'gooey';
-        }else if(spawnChance <= 0.8) {
+        }else if(spawnChance <= 0.95) {
             powerup = 'normal';
         }else {
             powerup = 'runny';
@@ -169,12 +181,12 @@ console.log("expected sudden:"+suddentype);
     }
     
     suddenE() {
-        console.log('sudden in function ='+suddentype);
+        //console.log('sudden in function ='+suddentype);
         if(suddentype == 'chopsticks') {
             
-            sudden = new Sudden(this, 500, 0, 300, 'ChopstickHand').setScale(0.5).setOrigin(1,1);     // create new barrier
+            sudden = new Sudden(this, 500, 0, Phaser.Math.Between(0+200, game.config.height - 200), 'ChopstickHand').setScale(0.5).setOrigin(0.5,0.5);     // create new barrier
         }else if(suddentype == 'fork') {
-            sudden = new Sudden(this, -500, centerX, game.config.height, 'ForkHand').setScale(0.5).setOrigin(1,1);     // create new barrier
+            sudden = new Sudden(this, -500, Phaser.Math.Between(0+150, game.config.width - 150), Phaser.Math.RND.pick([0, game.config.height]), 'ForkHand').setScale(0.5).setOrigin(0.5,0.5);     // create new barrier
         }
         
         //sudden.body.setCircle(190, 260, 230);
@@ -191,6 +203,10 @@ console.log("expected sudden:"+suddentype);
         // moving the mask
         this.yolkMask.x -= stepWidth;
         if(this.timeLeft <= 0){
+             // kill paddle
+              bun.destroy();              
+             // switch states after timer expires
+              this.time.delayedCall(1000, () => { this.scene.start('gameOverScene'); });
             //this.scene.start('gameOverScene');
         }
     }
@@ -210,7 +226,7 @@ console.log("expected sudden:"+suddentype);
         
         this.suddenE();
         suddentype = Phaser.Math.RND.pick(['chopsticks', 'fork']);
-        console.log("new sudden:"+suddentype);
+        //console.log("new sudden:"+suddentype);
         if(suddentype == 'chopsticks') {
             this.chopsticks.alpha = 1;
             this.fork.alpha = 0;
@@ -218,7 +234,13 @@ console.log("expected sudden:"+suddentype);
             this.chopsticks.alpha = 0;
             this.fork.alpha = 1;
         }
-        this.randomTime = Phaser.Math.Between(5,12);
+        if(this.hardMODE) {
+            this.randomTime = Phaser.Math.Between(4,8);
+        }else if(this.extremeMODE) {
+            this.randomTime = Phaser.Math.Between(1,3);
+        }else{
+            this.randomTime = Phaser.Math.Between(9,12);
+        }
         //console.log("new random:"+this.randomTime);
         this.suddenTimer.text = this.randomTime+'S';
         this.countdownE.remove();
@@ -238,6 +260,9 @@ console.log("expected sudden:"+suddentype);
     }
 
     update() {
+        bun.anims.play('walk', true);
+        this.boom.x = bun.x;
+        this.boom.y = bun.y;
         //console.log(paddle.y-(paddle.height/2));
         this.background.tilePositionX += 4;
 
@@ -249,9 +274,11 @@ console.log("expected sudden:"+suddentype);
                 bun.body.velocity.y += paddleVelocity;
             } else if(cursors.left.isDown) {
                 bun.setVelocityX(-paddleVelocity);
+                bun.anims.play('walk', true);
                 //bun.body.velocity.x -= paddleVelocity;
             } else if(cursors.right.isDown) {
                 bun.setVelocityX(paddleVelocity);
+                bun.anims.play('walk', true);
                 //bun.body.velocity.x += paddleVelocity;
             } else {
                 bun.body.setDragX(1200);
@@ -259,13 +286,14 @@ console.log("expected sudden:"+suddentype);
             }
             // check for collisions
             this.physics.world.collide(bun, this.barrierGroup, this.barrierCollision, null, this);
+            this.physics.world.collide(bun, this.suddenGroup, this.barrierCollision, null, this);
 
             this.physics.add.overlap(bun, powerups, this.powerupsCollision, null, this);
         }
 
         // spawn rainbow trail if in EXTREME mode
         //if(this.extremeMODE && !this.shadowLock && !bun.destroyed) {
-        if(!this.shadowLock) {
+        if(!this.shadowLock && this.extremeMODE) {
             this.spawnShadowPaddles();
             this.shadowLock = true;
             // lock shadow bun spawning to a given time interval
@@ -278,23 +306,24 @@ console.log("expected sudden:"+suddentype);
         level++;
 
         // bump speed every 5 levels
-        // if(level % 5 == 0) {
-        //     //console.log(`level: ${level}, speed: ${this.barrierSpeed}`);
-        //     this.sound.play('clang', { volume: 0.75 });         // play clang to signal speed up
-        //     if(this.barrierSpeed >= this.barrierSpeedMax) {     // increase barrier speed
-        //         this.barrierSpeed -= 25;
-        //         this.bgm.rate += 0.01;                          // increase bgm playback rate (ドキドキ)
-        //     }
-        // }
+        if(level % 5 == 0) {
+            //console.log(`level: ${level}, speed: ${this.barrierSpeed}`);
+            //this.sound.play('clang', { volume: 0.75 });         // play clang to signal speed up
+            if(this.barrierSpeed >= this.barrierSpeedMax) {     // increase barrier speed
+                this.barrierSpeed -= 25;
+                //this.bgm.rate += 0.01;                          // increase bgm playback rate (ドキドキ)
+            }
+        }
         // set HARD mode
-        // if(level == 45) {
-        //     paddle.scaleY = 0.75;
-        // }
-        // // set EXTREME mode
-        // if(level == 75) {
-        //     paddle.scaleY = 0.5;
-        //     this.extremeMODE = true;
-        // }
+        if(level == 45) {
+            this.hardMODE = true;
+        }
+        // set EXTREME mode
+        if(level == 75) {
+            //paddle.scaleY = 0.5;
+            this.hardMODE = true;
+            this.extremeMODE = true;
+        }
     }
 
     spawnShadowPaddles() {
@@ -360,15 +389,24 @@ console.log("expected sudden:"+suddentype);
     }
 
     powerupsCollision(bun, powerups){
-        powerups.disableBody(true, true);
         powerups.eat = true;
-        console.log(powerups.eat);
+        powerups.disableBody(true, true);
+        this.time.delayedCall(3000, () => {
+            this.addPowerups();
+        }, null, this);
+        
+        //this.powerupsGroup.remove(powerups, true);
+        
+        //console.log(powerups.eat);
         //console.log('type:'+powerups.functionality);
         if(powerups.functionality==='normal') {
             //console.log("things:"+this.add.displayList);
             //this.add.displayList.removeAll();
             //if(this.barrierGroup.children.isOnScreen())
-            for(var i = 0; i < this.barrierGroup.children.length; i++) { this.barrierGroup.children[i].destroy();}
+            //console.log("powerups.eat:"+powerups.eat);
+            //this.barrierGroup.killAndHide(this.barrierGroup.getChildren()[0]);
+            //this.barrierGroup.remove(this.barrierGroup.getChildren()[1], true);
+            
                 //this.barrierGroup.clear(true);
             this.yolkBar.alpha = 0.8;
             this.gameTimer.paused = true;
@@ -381,6 +419,17 @@ console.log("expected sudden:"+suddentype);
         }else if(powerups.functionality==='runny') {
             console.log("runny");
             bun.setVelocityX(paddleVelocity * 8);
+        }else {
+            for(var i = this.barrierGroup.getChildren().length - 1; i >= 0; --i) { 
+                console.log(i);
+                console.log("number of new barriers:"+this.barrierGroup.getChildren().length);
+                this.barrierGroup.remove(this.barrierGroup.getChildren()[i], true);
+            }
+
+            this.time.delayedCall(3000, () => {
+                this.addBarrier();
+            }, null, this);
+            
         }
         // if(this.physics.add.overlap(paddle, this.powerupsGroup)){
         //     

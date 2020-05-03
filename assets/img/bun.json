@@ -1,0 +1,83 @@
+{
+	"textures": [
+		{
+			"image": "walkingbun.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1842,
+				"h": 1959
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "walk1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1024,
+						"h": 1024
+					},
+					"spriteSourceSize": {
+						"x": 37,
+						"y": 14,
+						"w": 919,
+						"h": 992
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 919,
+						"h": 992
+					}
+				},
+				{
+					"filename": "walk3.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1024,
+						"h": 1024
+					},
+					"spriteSourceSize": {
+						"x": 37,
+						"y": 14,
+						"w": 919,
+						"h": 992
+					},
+					"frame": {
+						"x": 922,
+						"y": 1,
+						"w": 919,
+						"h": 992
+					}
+				},
+				{
+					"filename": "walk2.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1024,
+						"h": 1024
+					},
+					"spriteSourceSize": {
+						"x": 37,
+						"y": 14,
+						"w": 919,
+						"h": 963
+					},
+					"frame": {
+						"x": 1,
+						"y": 995,
+						"w": 919,
+						"h": 963
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:b75203dd8e5bd418be501d10f5841819:748024a8ab3f203edc35ef01961285ef:a61d8cbe9b22f77ef9766b429b2c44f3$"
+	}
+}

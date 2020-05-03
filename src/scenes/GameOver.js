@@ -4,6 +4,7 @@ class GameOver extends Phaser.Scene {
     }
 
     create() {
+        this.add.image(centerX, centerY, 'endgame').setScale(0.8).setOrigin(0.5,0.5);
         // check for high score in local storage
         // uncomment console.log statements if you need to debug local storage
         if(localStorage.getItem('hiscore') != null) {
@@ -31,9 +32,9 @@ class GameOver extends Phaser.Scene {
         if(newHighScore) {
             this.add.text(centerX, centerY - textSpacer, 'New Hi-Score!', { fontFamily: 'Helvetica', fontSize: '32px', color: '#FACADE' }).setOrigin(0.5);
         }
-        this.add.text(centerX, centerY, `You avoided getting REKT for ${level}s`, { fontFamily: 'Helvetica', fontSize: '48px', color: '#FFF' }).setOrigin(0.5);
+        this.add.text(centerX, centerY, `You survived for ${level}s`, { fontFamily: 'Helvetica', fontSize: '48px', color: '#FFF' }).setOrigin(0.5);
         this.add.text(centerX, centerY + textSpacer, `This browser's best: ${highScore}s`, { fontFamily: 'Helvetica', fontSize: '32px', color: '#FACADE' }).setOrigin(0.5);
-        this.add.text(centerX, centerY + textSpacer*2, `Press UP ARROW to Restart`, { fontFamily: 'Helvetica', fontSize: '24px', color: '#FFF' }).setOrigin(0.5);
+        //this.add.text(centerX, centerY + textSpacer*2, `Press UP ARROW to Restart`, { fontFamily: 'Helvetica', fontSize: '24px', color: '#FFF' }).setOrigin(0.5);
 
         // set up cursor keys
         cursors = this.input.keyboard.createCursorKeys();

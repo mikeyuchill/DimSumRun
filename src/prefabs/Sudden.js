@@ -12,10 +12,28 @@ class Sudden extends Phaser.Physics.Arcade.Sprite {
        // set up physics sprite
        scene.add.existing(this);               // add to existing scene, displayList, updateList
        scene.physics.add.existing(this);       // add physics body
-       if(functionality == 'ChopstickHand')
-         this.setVelocityX(velocity);            // make it go!
-       else
-         this.setVelocityY(velocity);
+       if(functionality == 'ChopstickHand') {
+         this.setVelocityX(1);
+         scene.time.delayedCall(2000, () => {
+            this.setVelocityX(velocity);
+         }, null, this); 
+       }else{
+          if(yposition == 0) {
+             this.angle = 180;
+             this.setVelocityY(1);
+             scene.time.delayedCall(2000, () => {
+               this.setVelocityY(-velocity);
+            }, null, this);
+          }else {
+             this.setVelocityY(-1);
+            scene.time.delayedCall(2000, () => {
+               this.setVelocityY(velocity);
+            }, null, this);
+          }
+          
+          
+       }
+         
        this.setImmovable();                    
        //this.tint = Math.random() * 0xFFFFFF;   // randomize tint
        this.newBarrier = true;                 // custom property to control barrier spawning
@@ -37,6 +55,7 @@ class Sudden extends Phaser.Physics.Arcade.Sprite {
       //  }
 
        // destroy paddle if it reaches the left edge of the screen
+       //if()
        if(this.x < -this.width) {
            this.destroy();
        }
