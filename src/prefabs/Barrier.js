@@ -1,9 +1,9 @@
 class Barrier extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, velocity, type) {
         //this.type = Phaser.Math.RND.pick(['normal', 'gooey', 'runny']);
-        console.log('expected object is:'+type);
+        //console.log('expected object is:'+type);
         // call Phaser Physics Sprite constructor
-        super(scene, game.config.width + paddleWidth, Phaser.Math.Between(200, game.config.height - paddleHeight/2), type); 
+        super(scene, game.config.width + paddleWidth, Phaser.Math.Between(100, 520), type); 
 
         
        //console.log('object is:'+type);

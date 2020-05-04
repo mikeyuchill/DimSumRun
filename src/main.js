@@ -11,14 +11,14 @@ let config = {
     parent: 'myGame',
     type: Phaser.AUTO,
     height: 720,
-    width: 1050,
+    width: 1000,
     scale: {
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
     physics: {
         default: 'arcade',
         arcade: {
-            //debug: true,
+            debug: true,
             gravity: {
                 x: 0,
                 y: 0
@@ -46,6 +46,7 @@ let suddentype = null;
 const paddleWidth = 16;
 const paddleHeight = 128;
 const paddleVelocity = 200;
+let bgm = null;
 let powerups;
 let level;
 let highScore;

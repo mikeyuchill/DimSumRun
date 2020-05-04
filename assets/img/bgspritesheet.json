@@ -10,7 +10,7 @@
 			"scale": 1,
 			"frames": [
 				{
-					"filename": "IMG_0337.png",
+					"filename": "upper",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -31,7 +31,7 @@
 					}
 				},
 				{
-					"filename": "IMG_0338.png",
+					"filename": "mid",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -52,7 +52,7 @@
 					}
 				},
 				{
-					"filename": "IMG_0339.png",
+					"filename": "bottom",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {

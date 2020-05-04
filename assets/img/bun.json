@@ -10,7 +10,7 @@
 			"scale": 1,
 			"frames": [
 				{
-					"filename": "walk1.png",
+					"filename": "walk1",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -31,7 +31,7 @@
 					}
 				},
 				{
-					"filename": "walk3.png",
+					"filename": "walk3",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -52,7 +52,7 @@
 					}
 				},
 				{
-					"filename": "walk2.png",
+					"filename": "walk2",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
