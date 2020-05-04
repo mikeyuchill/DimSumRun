@@ -2,6 +2,7 @@
 // Artists: Sunny Jang, Victor Dong
 // Dim Sum Run
 // An endless dodging game
+// Created: 04/27/20
 // Updated: 05/03/20
 // Creaative justification:  I use local storage to track the player's
 //     high score across browser sessions, and in the game we also have 
