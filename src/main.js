@@ -7,10 +7,12 @@
 // Creaative justification:  I use local storage to track the player's
 //     high score across browser sessions, and in the game we also have 
 //     a neat visual effect--a yolk leaking trail--that triggers if a player
-//     pick up some certion powerups. Overall, I think our idea of this game
-//     is original and interesting becuase we came up with our own ideas and
-//     I made most of the sound in the game by myself, and I am proud about I
-//     am able to realize the sudden events and properly handle them :)
+//     pick up some certion powerups. Moreover, after a player survived for a
+//     certain time, the "yolk shadow" will spawn, which is quite interesting.
+//     Overall, I think our idea of this game is original and interesting
+//     becuase we came up with our own ideas and I made most of the sound
+//     in the game by myself, and I am proud about I am able to realize
+//     the sudden events and properly handle them :)
 // Cite: Chopstick icon and Fork icon from Noun Project
 //       BGM from the Internet
 
