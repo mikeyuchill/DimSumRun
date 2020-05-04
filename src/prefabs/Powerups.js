@@ -1,7 +1,7 @@
 class Powerups extends Phaser.Physics.Arcade.Sprite {
    constructor(scene, velocity, functionality) {
        // call Phaser Physics Sprite constructor
-       super(scene, game.config.width + paddleWidth, Phaser.Math.Between(100, 520), functionality);
+       super(scene, game.config.width + paddleWidth, Phaser.Math.Between(130, 520), functionality);
        
        // set up physics sprite
 
