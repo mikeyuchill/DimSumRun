@@ -45,6 +45,7 @@ class GameOver extends Phaser.Scene {
             //this.hiscore.setDepth(1);
         this.add.text(centerX+205, centerY+3*textSpacer, `${highScore}   S`, { fontFamily: 'Freckle Face', fontSize: '36px', color: '#F9BB1F' }).setOrigin(0.5);
         //this.add.text(centerX, centerY + textSpacer*2, `Press UP ARROW to Restart`, { fontFamily: 'Helvetica', fontSize: '24px', color: '#FFF' }).setOrigin(0.5);
+        this.add.text(centerX+358, centerY+5*textSpacer+32, `Created by: Sheng Yu, Sunny Jang, Victor Dong`, { fontFamily: 'Freckle Face', fontSize: '32px', color: '#F9BB1F' }).setOrigin(0.8);
 
         // set up cursor keys
         cursors = this.input.keyboard.createCursorKeys();

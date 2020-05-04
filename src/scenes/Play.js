@@ -45,8 +45,8 @@ class Play extends Phaser.Scene {
         bun.body.setBoundsRectangle(customBounds);
         //bun.width = 10;
         //bun.body.height = 10;
-        console.log("bun's width:"+bun.body.width);
-        console.log("bun's height:"+bun.body.height);
+        //console.log("bun's width:"+bun.body.width);
+        //console.log("bun's height:"+bun.body.height);
         bun.setSize(700, 700, true);
         bun.setScale(0.09);
         bun.setCollideWorldBounds(true);
@@ -358,7 +358,7 @@ class Play extends Phaser.Scene {
         this.runnyAnim.x = bun.x - 25;
         this.runnyAnim.y = bun.y;
 
-        console.log("this.yolkMask.x: "+this.yolkMask.x);
+        //console.log("this.yolkMask.x: "+this.yolkMask.x);
 
         this.background.tilePositionX += 4;
         this.people.tilePositionX += 28;
@@ -491,7 +491,7 @@ class Play extends Phaser.Scene {
                 this.gameTimer.paused = false;
             }, null, this);
         }else if(powerups.functionality==='gooey') {
-            console.log("gooey");
+            //console.log("gooey");
             this.randomTime += 5;
             this.suddenTimer.text = this.randomTime+" S";
             this.countdownE.remove();
@@ -513,7 +513,7 @@ class Play extends Phaser.Scene {
             }, null, this);
 
         }else if(powerups.functionality==='runny') {
-            console.log("runny");
+            //console.log("runny");
             //this.background.tilePositionX += 10;
             //this.addPowerups();
             this.runnyAnim.alpha = 1;
@@ -536,7 +536,7 @@ class Play extends Phaser.Scene {
                 //console.log("number of new barriers:"+this.barrierGroup.getChildren().length);
                 this.barrierGroup.remove(this.barrierGroup.getChildren()[i], true);
             }
-            console.log("#ofsudden: "+this.suddenGroup.getChildren().length);
+            //console.log("#ofsudden: "+this.suddenGroup.getChildren().length);
             for(var j = this.suddenGroup.getChildren().length - 1; j >= 0; --j) { 
                 //console.log(i);
                 this.suddenGroup.remove(this.suddenGroup.getChildren()[j], true);

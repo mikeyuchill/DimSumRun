@@ -47,6 +47,7 @@ class Load extends Phaser.Scene {
         this.load.image('thisbrowsersbest', './assets/img/thisbrowsersbest.png');
 
         this.load.script('webfont', 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js');
+        
 
         // load audio assets
         this.load.audio('cuteBGM', ['./assets/audio/cuteBGM.mp3']);
