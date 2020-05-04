@@ -1,75 +1,54 @@
 {
 	"textures": [
 		{
-			"image": "walkingbun.png",
+			"image": "walk.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 1842,
-				"h": 1959
+				"w": 1788,
+				"h": 992
 			},
 			"scale": 1,
 			"frames": [
 				{
-					"filename": "walk1",
+					"filename": "walk__002.png",
 					"rotated": false,
-					"trimmed": true,
+					"trimmed": false,
 					"sourceSize": {
-						"w": 1024,
-						"h": 1024
+						"w": 892,
+						"h": 990
 					},
 					"spriteSourceSize": {
-						"x": 37,
-						"y": 14,
-						"w": 919,
-						"h": 992
+						"x": 0,
+						"y": 0,
+						"w": 892,
+						"h": 990
 					},
 					"frame": {
 						"x": 1,
 						"y": 1,
-						"w": 919,
-						"h": 992
+						"w": 892,
+						"h": 990
 					}
 				},
 				{
-					"filename": "walk3",
+					"filename": "walk__003.png",
 					"rotated": false,
-					"trimmed": true,
+					"trimmed": false,
 					"sourceSize": {
-						"w": 1024,
-						"h": 1024
+						"w": 892,
+						"h": 990
 					},
 					"spriteSourceSize": {
-						"x": 37,
-						"y": 14,
-						"w": 919,
-						"h": 992
+						"x": 0,
+						"y": 0,
+						"w": 892,
+						"h": 990
 					},
 					"frame": {
-						"x": 922,
+						"x": 895,
 						"y": 1,
-						"w": 919,
-						"h": 992
-					}
-				},
-				{
-					"filename": "walk2",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1024,
-						"h": 1024
-					},
-					"spriteSourceSize": {
-						"x": 37,
-						"y": 14,
-						"w": 919,
-						"h": 963
-					},
-					"frame": {
-						"x": 1,
-						"y": 995,
-						"w": 919,
-						"h": 963
+						"w": 892,
+						"h": 990
 					}
 				}
 			]
@@ -78,6 +57,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:b75203dd8e5bd418be501d10f5841819:748024a8ab3f203edc35ef01961285ef:a61d8cbe9b22f77ef9766b429b2c44f3$"
+		"smartupdate": "$TexturePacker:SmartUpdate:152088015e3f18bcbc63b4e5fe4daa90:b24b8f35642189fe3fa64dee05127ac5:f9e905ee92ca6262c513e44422b15402$"
 	}
 }

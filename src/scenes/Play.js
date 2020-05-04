@@ -38,7 +38,7 @@ class Play extends Phaser.Scene {
         //this.background.alpha = 0;
         // set up bun (physics sprite)
         //bun = this.physics.add.sprite(32, centerY, 'bun').setOrigin(1,1).setScale(0.1);
-        bun = this.physics.add.sprite(32, centerY, 'bun', 'walk1');
+        bun = this.physics.add.sprite(32, centerY, 'bun');
         //bun.create( bun.x, bun.y, 'runnyspritesheet');
         bun.alpha = 2;
         var customBounds = new Phaser.Geom.Rectangle(55, 98, 945, 530);
@@ -72,6 +72,24 @@ class Play extends Phaser.Scene {
         // });
 
         this.anims.create({
+            key: 'walk',
+            frames: [
+            { key: 'bun',frame:"walk__002.png"},
+            { key: 'bun',frame:"walk__003.png"},
+            ],
+            frameRate: 8,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: 'idle',
+            defaultTextureKey: 'bun',
+            frames: [
+                { frame: "walk__002.png" }
+            ],
+            repeat: -1
+        });
+        this.anims.create({
             key: 'chop',
             frames: this.anims.generateFrameNumbers('ChopstickHand', { start: 0, end: 1, first: 0}),
             frameRate: 5,
@@ -81,6 +99,13 @@ class Play extends Phaser.Scene {
         this.anims.create({
             key: 'leak',
             frames: this.anims.generateFrameNumbers('gooeyspritesheet', { start: 0, end: 2, first: 0}),
+            frameRate: 1,
+            repeat: -1
+         });
+
+         this.anims.create({
+            key: 'leak1',
+            frames: this.anims.generateFrameNumbers('runnyspritesheet', { start: 0, end: 2, first: 0}),
             frameRate: 1,
             repeat: -1
          });
@@ -324,10 +349,11 @@ class Play extends Phaser.Scene {
 
     update() {
         
-        //bun.anims.play('walk', true);
+        this.gooeyAnim.play('leak', true);
         this.gooeyAnim.x = bun.x - 25;
         this.gooeyAnim.y = bun.y;
 
+        this.runnyAnim.play('leak1', true);
         this.runnyAnim.x = bun.x - 25;
         this.runnyAnim.y = bun.y;
 
@@ -351,6 +377,7 @@ class Play extends Phaser.Scene {
                 bun.anims.play('walk', true);
                 //bun.body.velocity.x += paddleVelocity;
             } else {
+                bun.anims.play('idle');
                 bun.body.setDragX(1200);
                 bun.body.setDragY(1200);
             }
