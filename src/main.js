@@ -8,8 +8,11 @@
 //     high score across browser sessions, and in the game we also have 
 //     a neat visual effect--a yolk leaking trail--that triggers if a player
 //     pick up some certion powerups. Overall, I think our idea of this game
-//     is original and interesting, and I am proud about I am able to realize
-//     the sudden events and properly handle them :)
+//     is original and interesting becuase we came up with our own ideas and
+//     I made most of the sound in the game by myself, and I am proud about I
+//     am able to realize the sudden events and properly handle them :)
+// Cite: Chopstick icon and Fork icon from Noun Project
+//       BGM from the Internet
 
 // keep me honest
 'use strict';
