@@ -199,11 +199,11 @@ class Play extends Phaser.Scene {
     addPowerups() {
         let powerup = null;
         let spawnChance = Math.random();
-        if(spawnChance <= 0.1) {
+        if(spawnChance <= 0.2) {
             powerup = 'gooey';
-        }else if(spawnChance <= 0.9) {
+        }else if(spawnChance <= 0.8) {
             powerup = 'normal';
-        }else if(spawnChance <= 0.95) {
+        }else if(spawnChance <= 0.9) {
             powerup = 'runny';
         }else {
             powerup = 'chili';

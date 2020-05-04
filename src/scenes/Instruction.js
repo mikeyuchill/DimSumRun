@@ -23,7 +23,8 @@ class Instruction extends Phaser.Scene {
         this.sound.play('Bling', { volume: 0.5});
            this.scene.start('playScene');
        }else if (Phaser.Input.Keyboard.JustDown(cursors.right)) {
-        this.sound.play('Bling', { volume: 0.5});
+         if(this.isView == false)
+            this.sound.play('Bling', { volume: 0.5});
          this.instruction.alpha = 0;
          this.instruction2.alpha = 1;
          this.isView = true;
