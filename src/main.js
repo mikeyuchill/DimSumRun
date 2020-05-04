@@ -1,4 +1,5 @@
-// Sheng Yu
+// Programmer: Sheng Yu
+// Artists: Sunny Jang, Victor Dong
 // Dim Sum Run
 // An endless dodging game
 // Updated: 4/27/20

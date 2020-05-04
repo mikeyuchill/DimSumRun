@@ -35,16 +35,15 @@ class GameOver extends Phaser.Scene {
 
         // add GAME OVER text
         if(newHighScore) {
-            //this.add.text(centerX, centerY - textSpacer, 'New Hi-Score!', { fontFamily: 'Helvetica', fontSize: '32px', color: '#FACADE' }).setOrigin(0.5);
-            
+            this.hiscore = this.add.image(centerX+20, centerY+textSpacer, 'newhighscore').setScale(0.5);
         }
         
-        this.hiscore = this.add.image(centerX+20, centerY+textSpacer, 'newhighscore').setScale(0.5);
+        
         this.survive = this.add.image(centerX+20, centerY+2*textSpacer, 'yousurvivedfor').setScale(0.15);
         this.add.text(centerX+220, centerY+2*textSpacer+10, `${level}   S`, { fontFamily: 'Freckle Face', fontSize: '36px', color: '#FFF' }).setOrigin(0.8);
         this.browser = this.add.image(centerX+20, centerY+3*textSpacer, 'thisbrowsersbest').setScale(0.15);
             //this.hiscore.setDepth(1);
-        //this.add.text(centerX, centerY + textSpacer, `This browser's best: ${highScore}s`, { fontFamily: 'Helvetica', fontSize: '32px', color: '#FACADE' }).setOrigin(0.5);
+        this.add.text(centerX+205, centerY+3*textSpacer, `${highScore}   S`, { fontFamily: 'Freckle Face', fontSize: '36px', color: '#F9BB1F' }).setOrigin(0.5);
         //this.add.text(centerX, centerY + textSpacer*2, `Press UP ARROW to Restart`, { fontFamily: 'Helvetica', fontSize: '24px', color: '#FFF' }).setOrigin(0.5);
 
         // set up cursor keys

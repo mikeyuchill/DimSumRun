@@ -126,7 +126,7 @@ class Play extends Phaser.Scene {
             loop: true
         });
 
-        this.timeLeft = 50;
+        this.timeLeft = 60;
  
         // the Yolk Bar container.
         let yolkContainer = this.add.sprite(210, 40, "yolkcontainer").setScale(0.6);
@@ -201,9 +201,9 @@ class Play extends Phaser.Scene {
         let spawnChance = Math.random();
         if(spawnChance <= 0.1) {
             powerup = 'gooey';
-        }else if(spawnChance <= 0.2) {
-            powerup = 'normal';
         }else if(spawnChance <= 0.9) {
+            powerup = 'normal';
+        }else if(spawnChance <= 0.95) {
             powerup = 'runny';
         }else {
             powerup = 'chili';
@@ -238,7 +238,7 @@ class Play extends Phaser.Scene {
         // dividing enery bar width by the number of seconds gives us the amount
         // of pixels we need to move the energy bar each second
         //let stepWidth = this.energyMask.displayWidth / gameOptions.initialTime;
-        let stepWidth = this.yolkMask.displayWidth / 50;
+        let stepWidth = this.yolkMask.displayWidth / 60;
         // moving the mask
         this.yolkMask.x -= stepWidth;
         if(this.timeLeft <= 0){
@@ -323,13 +323,16 @@ class Play extends Phaser.Scene {
     }
 
     update() {
+        
         //bun.anims.play('walk', true);
         this.gooeyAnim.x = bun.x - 25;
         this.gooeyAnim.y = bun.y;
 
         this.runnyAnim.x = bun.x - 25;
         this.runnyAnim.y = bun.y;
-        //console.log(paddle.y-(paddle.height/2));
+
+        console.log("this.yolkMask.x: "+this.yolkMask.x);
+
         this.background.tilePositionX += 4;
         this.people.tilePositionX += 28;
 
@@ -419,7 +422,7 @@ class Play extends Phaser.Scene {
         this.sound.play('Hit', { volume: 0.5 });
         this.timeLeft -= 4;
         //console.log("time after:"+this.timeLeft);
-        this.yolkMask.x -= 4 * this.yolkMask.displayWidth / (50);
+        this.yolkMask.x -= 4 * this.yolkMask.displayWidth / (60);
         //this.gameTimer.remove();
         // this.gameTimer = this.time.addEvent({
         //     delay: 1000,
@@ -489,9 +492,15 @@ class Play extends Phaser.Scene {
             this.time.delayedCall(3000, () => {
                 this.runnyAnim.alpha = 0;
             }, null, this);
-            this.timeLeft += 4;
+            if(this.timeLeft + 5 > 60)
+                this.timeLeft = 60;
+            else
+                this.timeLeft += 5;
         //console.log("time after:"+this.timeLeft);
-            this.yolkMask.x += 4 * this.yolkMask.displayWidth / (50);
+            if((this.yolkMask.x + 5 * this.yolkMask.displayWidth / (60)) > 210)
+                this.yolkMask.x = 210;
+            else
+                this.yolkMask.x += 5 * this.yolkMask.displayWidth / (60);
             //bun.setVelocityX(paddleVelocity * 8);
         }else {
             for(var i = this.barrierGroup.getChildren().length - 1; i >= 0; --i) { 
