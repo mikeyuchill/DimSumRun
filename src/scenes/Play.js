@@ -224,10 +224,11 @@ class Play extends Phaser.Scene {
     addPowerups() {
         let powerup = null;
         let spawnChance = Math.random();
-        if(spawnChance <= 0.2) {
-            powerup = 'gooey';
-        }else if(spawnChance <= 0.8) {
+        if(spawnChance <= 0.6) {
             powerup = 'normal';
+            
+        }else if(spawnChance <= 0.8) {
+            powerup = 'gooey';
         }else if(spawnChance <= 0.9) {
             powerup = 'runny';
         }else {
@@ -529,17 +530,16 @@ class Play extends Phaser.Scene {
             else
                 this.yolkMask.x += 5 * this.yolkMask.displayWidth / (60);
             //bun.setVelocityX(paddleVelocity * 8);
-        }else {
+        }else { // chili
             for(var i = this.barrierGroup.getChildren().length - 1; i >= 0; --i) { 
                 //console.log(i);
                 //console.log("number of new barriers:"+this.barrierGroup.getChildren().length);
                 this.barrierGroup.remove(this.barrierGroup.getChildren()[i], true);
             }
-
+            console.log("#ofsudden: "+this.suddenGroup.getChildren().length);
             for(var j = this.suddenGroup.getChildren().length - 1; j >= 0; --j) { 
                 //console.log(i);
-                //console.log("number of new barriers:"+this.barrierGroup.getChildren().length);
-                this.suddenGroup.remove(this.suddenGroup.getChildren()[i], true);
+                this.suddenGroup.remove(this.suddenGroup.getChildren()[j], true);
             }
 
             this.time.delayedCall(4000, () => {

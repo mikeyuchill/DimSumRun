@@ -9,15 +9,17 @@ class Powerups extends Phaser.Physics.Arcade.Sprite {
        scene.physics.add.existing(this);       // add physics body
        if(functionality == 'runny') {
         //this.setBounceY(1);
-        this.setVelocity(-300, Phaser.Math.RND.pick([300, -300]));
-        this.setCollideWorldBounds(true, true, true);
+           this.setVelocity(-300, Phaser.Math.RND.pick([300, -300]));  // make it go!
+           this.setCollideWorldBounds(true, true, true);
         // scene.time.delayedCall(3000, () => {
         //     this.destroy();
         //     scene.addPowerups(this.parent, this.velocity);
         // }, null, this); 
-      }else{
-       this.setVelocityX(velocity);  
-        }          // make it go!
+      }else if(functionality == 'chili') {
+           this.setVelocityX(-700);
+      }else {
+           this.setVelocityX(velocity);
+      }          
        this.setImmovable();                    
        //this.tint = Math.random() * 0xFFFFFF;   // randomize tint
        this.newNormal = true;                 // custom property to control barrier spawning
