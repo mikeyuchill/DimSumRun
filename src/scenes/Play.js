@@ -509,6 +509,12 @@ class Play extends Phaser.Scene {
                 this.barrierGroup.remove(this.barrierGroup.getChildren()[i], true);
             }
 
+            for(var j = this.suddenGroup.getChildren().length - 1; j >= 0; --j) { 
+                //console.log(i);
+                //console.log("number of new barriers:"+this.barrierGroup.getChildren().length);
+                this.suddenGroup.remove(this.suddenGroup.getChildren()[i], true);
+            }
+
             this.time.delayedCall(4000, () => {
                 this.addBarrier();
             }, null, this);
